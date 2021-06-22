@@ -1,0 +1,15 @@
+.or-entry::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #a8a8b3;
+  margin-right: 16px;
+}
+
+.or-entry::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #a8a8b3;
+  margin-left: 16px;
+}

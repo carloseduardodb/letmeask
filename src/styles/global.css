@@ -1,0 +1,18 @@
+:root {
+  --gradient: linear-gradient(139.44deg, #485bff 0%, #ff59f8 96.19%);
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f8f8f8;
+  color: #29292e;
+}
