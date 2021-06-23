@@ -40,6 +40,7 @@ module.exports = {
         "p-white": {
           DEFAULT: "#F8F8F8",
           light: "#FEFEFE",
+          dark: "#E2E2E2",
         },
         "p-pink": {
           light: "#D67EE2",
