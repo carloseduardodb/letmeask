@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import Button from "../../components/Button";
-import { AuthContext } from "../../contexts/AuthContext";
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
 
@@ -26,7 +25,7 @@ const NewRoom = () => {
       authorId: user?.id,
     });
 
-    history.push(`${firebaseRoom.key}`);
+    history.push(`/admin/rooms/${firebaseRoom.key}`);
   }
 
   return (
@@ -54,7 +53,7 @@ const NewRoom = () => {
           <h2 className="text-2xl mt-16 mb-6 font-display">
             Criar uma nova sala
           </h2>
-          <form onSubmit={handleCreateRoom}>
+          <form className="flex flex-col gap-3" onSubmit={handleCreateRoom}>
             <input
               className="h-12 rounded-lg w-full px-4 bg-white border-2 border-p-gray"
               type="text"

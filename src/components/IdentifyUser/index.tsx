@@ -1,5 +1,4 @@
 import React from "react";
-import { FiUser } from "react-icons/fi";
 
 type IdentifyUserTypes = {
   name: string;

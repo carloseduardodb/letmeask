@@ -72,7 +72,7 @@ const Home = () => {
           <div className="text-sm text-p-gray my-8 flex items-center or-entry">
             ou entre em uma sala
           </div>
-          <form onSubmit={handleJoinRoom}>
+          <form className="flex flex-col gap-y-3" onSubmit={handleJoinRoom}>
             <input
               className="h-12 rounded-lg w-full px-4 bg-white border-2 border-p-gray"
               type="text"
