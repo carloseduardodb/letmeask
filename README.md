@@ -1,7 +1,4 @@
-<div style="
-  display: flex; 
-  flex-direction: row;
-  justify-content: center;
+<div style="text-align: center;
 ">
 <img src="./project_images/logo.cec26660.svg">
 </div>
