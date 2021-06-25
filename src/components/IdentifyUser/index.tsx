@@ -17,7 +17,7 @@ const IdentifyUser: React.FC<IdentifyUserTypes> = ({
         !author ? "opacity-95 hover:opacity-100" : ""
       }`}
     >
-      <span className="p-0.5 bg-p-pink-light rounded-full">
+      <span className="p-0.5 bg-blue-400 rounded-full">
         <img
           src={avatar}
           width={32}

@@ -24,7 +24,7 @@ const Question = ({
       className={`p-5 
       ${
         isHighlighted && !isAnswered
-          ? "bg-purple-50 border-2 border-p-purple"
+          ? "bg-purple-50 border-2 border-blue-700"
           : "bg-white"
       }  
       ${isAnswered ? "bg-p-gray-extra-light" : "bg-white"}  

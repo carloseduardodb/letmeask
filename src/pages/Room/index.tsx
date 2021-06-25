@@ -1,6 +1,7 @@
 import logoImg from "../../assets/images/logo.svg";
 import Button from "./../../components/Button";
 import Question from "../../components/Question";
+import { Link } from "react-router-dom";
 import RoomCode from "../../components/RoomCode";
 import { useParams } from "react-router-dom";
 import { FormEvent, useState } from "react";
@@ -74,9 +75,11 @@ const Room = () => {
 
   return (
     <div className="justify-items-center items-center flex flex-col">
-      <header className="p-6 border-b border-p-white-dark w-screen">
+      <header className="p-6 border-b border-p-white-dark bg-white w-screen">
         <div className="max-w-6xl m-auto flex justify-between items-center">
-          <img src={logoImg} alt="Letmeask" className="max-h-11" />
+          <Link to="/">
+            <img src={logoImg} alt="Letmeask" className="max-h-11" />
+          </Link>
           <RoomCode code={id} />
         </div>
       </header>
@@ -87,8 +90,8 @@ const Room = () => {
           </h1>
           {questions.length > 0 && (
             <span
-              className="ml-8 bg-p-pink-dark rounded-full py-2 px-4 
-                          text-p-white text-xs"
+              className="ml-8 bg-yellow-200 rounded-full py-2 px-4 
+                          text-p-dark text-xs"
             >
               {questions.length} perguntas
             </span>
@@ -96,8 +99,8 @@ const Room = () => {
         </div>
         <form onSubmit={handleSendQuestion}>
           <textarea
-            className="w-full px-5 py-4 rounded-sm shadow-sm 
-            focus:outline-none focus:ring-2 focus:ring-p-pink-dark focus:ring-opacity-50"
+            className="w-full px-5 py-4 mb-5 rounded-sm shadow-sm 
+            focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-opacity-50"
             onChange={(event) => setNewQuestion(event.target.value)}
             value={newQuestion}
             rows={4}
@@ -112,7 +115,7 @@ const Room = () => {
             {!user ? (
               <span>
                 Para enviar uma pergunta,{" "}
-                <button className="text-p-pink-dark">faça seu login</button>.
+                <button className="text-blue-700">faça seu login</button>.
               </span>
             ) : (
               <IdentifyUser avatar={user.avatar} author name={user.name} />
@@ -133,7 +136,7 @@ const Room = () => {
                   onClick={() => {
                     handleLikeQuestion(question.id, question.likeId);
                   }}
-                  className="flex flex-row items-center"
+                  className="flex flex-row items-center focus:outline-none focus:border-transparent"
                   aria-label="Marcar como gostei"
                 >
                   {question.likeCount > 0 && (
@@ -146,7 +149,7 @@ const Room = () => {
                     className={`p-0 ${
                       !question.likeId
                         ? "text-p-gray hover:text-p-gray-dark"
-                        : "text-p-purple hover:text-p-purple-dark"
+                        : "text-blue-700 hover:text-blue-700"
                     } transition delay-150 duration-300 ease-in-out`}
                   />
                 </button>

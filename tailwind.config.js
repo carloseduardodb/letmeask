@@ -20,10 +20,6 @@ module.exports = {
         "p-shadow": {
           DEFAULT: "#050206",
         },
-        "p-purple": {
-          DEFAULT: "#835AFD",
-          dark: "#6F4BD8",
-        },
         "p-gradient": {
           DEFAULT: "var(--gradient)",
         },

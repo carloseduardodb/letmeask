@@ -1,9 +1,9 @@
 import logoImg from "../../assets/images/logo.svg";
+import { Link } from "react-router-dom";
 import Button from "./../../components/Button";
 import Question from "../../components/Question";
 import RoomCode from "../../components/RoomCode";
 import { useHistory, useParams } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import { FiTrash } from "react-icons/fi";
 import useRoom from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
@@ -27,7 +27,6 @@ type RoomParams = {
 };
 
 const AdminRoom = () => {
-  const { user } = useAuth();
   const params = useParams<RoomParams>();
   const history = useHistory();
   const { id } = params;
@@ -69,10 +68,12 @@ const AdminRoom = () => {
   }
 
   return (
-    <div className="justify-items-center items-center flex flex-col">
-      <header className="p-6 border-b border-p-white-dark w-screen">
+    <div className="justify-items-center items-center flex flex-col min-h-screen">
+      <header className="p-6 border-b border-p-white-dark bg-white w-screen">
         <div className="max-w-6xl m-auto flex justify-between items-center">
-          <img src={logoImg} alt="Letmeask" className="max-h-11" />
+          <Link to="/">
+            <img src={logoImg} alt="Letmeask" className="max-h-11" />
+          </Link>
           <div className="flex flex-row gap-x-3 justify-center items-center">
             <RoomCode code={id} />
             <div className="max-h-10">
@@ -90,8 +91,8 @@ const AdminRoom = () => {
           </h1>
           {questions.length > 0 && (
             <span
-              className="ml-8 bg-p-pink-dark rounded-full py-2 px-4 
-                          text-p-white text-xs"
+              className="ml-8 bg-yellow-200 rounded-full py-2 px-4 
+                          text-p-black text-xs"
             >
               {questions.length} perguntas
             </span>
@@ -111,7 +112,7 @@ const AdminRoom = () => {
                 {question.likeCount > 0 && (
                   <span
                     className="flex items-center gap-x-1 justify-center mr-1.5 
-                  text-p-white bg-p-purple w-12 h-8 rounded-full"
+                  text-p-white bg-blue-700 w-12 h-8 rounded-full"
                   >
                     <FiThumbsUp />
                     {question.likeCount}
@@ -142,10 +143,10 @@ const AdminRoom = () => {
                           question.isHighlighted
                         );
                       }}
-                      className={`text-p-purple flex items-center justify-center 
-                    hover:text-p-white hover:bg-p-purple w-12 h-8 px-2 py-1 
+                      className={`text-blue-700 flex items-center justify-center 
+                    hover:text-p-white hover:bg-blue-700 w-12 h-8 px-2 py-1 
                     rounded-full ${
-                      question.isHighlighted && "bg-p-purple text-p-white"
+                      question.isHighlighted && "bg-blue-700 text-p-white"
                     }
                     `}
                       aria-label="Apagar pergunta"

@@ -46,25 +46,29 @@ const Home = () => {
   }
 
   return (
-    <div className="flex items-stretch h-screen">
+    <div className="md:flex lg:flex-row sm:flex-col items-center h-screen">
       <aside
-        className="flex-7 bg-p-purple text-p-white flex-col justify-center 
-        py-28 px-20
+        className="flex-7 sm:py-14 bg-blue-700 md:h-full flex flex-col items-center text-p-white justify-around 
+        py-8 px-10
       "
       >
-        <img
-          className="max-w-xs"
-          src={illustrationImg}
-          alt="Ilustração simbolizando perguntas e respostas"
-        />
-        <strong className="font-bold text-4xl font-display leading-10 mt-4">
-          Crie salas de perguntas ao vivo
-        </strong>
-        <p className="text-2xl leading-8 mt-4 text-p-white">
-          Tire as duvidas de sua audiencia em tempo real
-        </p>
+        <div>
+          <img
+            className="sm:max-w-xs 2xl:max-w-full 2xl:mt-24 mb-5"
+            src={illustrationImg}
+            alt="Ilustração simbolizando perguntas e respostas"
+          />
+          <div className="flex flex-col">
+            <strong className="font-bold text-4xl font-display leading-10 mt-4">
+              Crie salas de perguntas ao vivo
+            </strong>
+            <p className="text-2xl leading-8 mt-4 text-p-white">
+              Seus alunos ficarão impressionados! :)
+            </p>
+          </div>
+        </div>
       </aside>
-      <main className="flex-8 flex px-8 items-center justify-center">
+      <main className="flex-8 flex px-8 items-center justify-center pb-10 pt-5">
         <div className="flex flex-col w-full max-w-xs items-stretch text-center">
           <img src={logoImg} alt="Letmeask" className="self-center" />
           <button
@@ -79,7 +83,9 @@ const Home = () => {
           </div>
           <form className="flex flex-col gap-y-3" onSubmit={handleJoinRoom}>
             <input
-              className="h-12 rounded-lg w-full px-4 bg-white border-2 border-p-gray"
+              className="h-12 rounded-lg w-full px-4 bg-white border-2 
+              border-p-gray focus:outline-none transition duration-150 focus:ring-2 
+              focus:border-transparent focus:ring-blue-400"
               type="text"
               onChange={(event) => setRoomCode(event.target.value)}
               value={roomCode}

@@ -15,8 +15,8 @@ const Button: React.FC<ButtonAllPropsPersonalise> = (
       className={`
         w-full ${
           props.isSecodary
-            ? "h-10 bg-p-white hover:bg-p-white-dark text-p-purple border border-p-purple"
-            : "h-14 bg-p-purple hover:bg-p-purple-dark text-white"
+            ? "h-10 bg-p-white hover:bg-p-white-dark text-blue-700 border border-blue-700"
+            : "h-14 bg-blue-700 hover:bg-blue-800 text-white"
         } rounded-lg font-medium  
         transition-colors delay-75  flex justify-center items-center 
         cursor-pointer border-0 px-8 disabled:opacity-50 disabled:cursor-not-allowed
