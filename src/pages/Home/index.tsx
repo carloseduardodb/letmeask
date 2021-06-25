@@ -73,10 +73,12 @@ const Home = () => {
           <img src={logoImg} alt="Letmeask" className="self-center" />
           <button
             onClick={handleCreateRoom}
-            className="mt-16 h-14 rounded-lg font-medium bg-red-500 hover:bg-red-600 transition-colors delay-75 text-white flex justify-center items-center cursor-pointer border-0"
+            className="mt-16 h-14 rounded-lg font-medium bg-red-500 hover:bg-red-600 
+            transition-colors delay-75 text-white flex justify-center gap-x-3 items-center 
+            cursor-pointer border-0"
           >
             <img src={googleIconImg} alt="Icone do google" className="mr-2" />
-            Crie sua sala com o Google
+            Continuar com o Google
           </button>
           <div className="text-sm text-p-gray my-8 flex items-center or-entry">
             ou entre em uma sala

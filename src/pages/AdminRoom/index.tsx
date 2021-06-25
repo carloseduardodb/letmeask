@@ -8,6 +8,7 @@ import { FiTrash } from "react-icons/fi";
 import useRoom from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 import { FiThumbsUp, FiCheckCircle, FiMessageSquare } from "react-icons/fi";
+import emptyQuestions from "../../assets/images/empty-questions.svg";
 
 type QuestionProps = {
   id: string;
@@ -176,6 +177,24 @@ const AdminRoom = () => {
               </div>
             </Question>
           ))}
+          {questions.length === 0 && (
+            <div>
+              <h3>
+                Sua aula está tão boa que seus alunos estão sem palavras
+                <br />
+                <span className="text-blue-700 font-bold">OU</span>
+                <br />
+                Eles foram abduzidos
+              </h3>
+              <div className="flex justify-center">
+                <img
+                  src={emptyQuestions}
+                  width={250}
+                  alt="Imagem de uma pessoa sendo abduzida"
+                />
+              </div>
+            </div>
+          )}
         </section>
       </main>
     </div>
