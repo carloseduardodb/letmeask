@@ -125,28 +125,32 @@ const Room = () => {
               key={question.id}
               content={question.content}
               author={question.author}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
             >
-              <button
-                onClick={() => {
-                  handleLikeQuestion(question.id, question.likeId);
-                }}
-                className="flex flex-row items-center"
-                aria-label="Marcar como gostei"
-              >
-                {question.likeCount > 0 && (
-                  <span className="mr-1.5 text-p-gray-dark">
-                    {question.likeCount}
-                  </span>
-                )}
-                <FiThumbsUp
-                  size={22}
-                  className={`p-0 ${
-                    !question.likeId
-                      ? "text-p-gray hover:text-p-gray-dark"
-                      : "text-p-purple hover:text-p-purple-dark"
-                  } transition delay-150 duration-300 ease-in-out`}
-                />
-              </button>
+              {!question.isAnswered && (
+                <button
+                  onClick={() => {
+                    handleLikeQuestion(question.id, question.likeId);
+                  }}
+                  className="flex flex-row items-center"
+                  aria-label="Marcar como gostei"
+                >
+                  {question.likeCount > 0 && (
+                    <span className="mr-1.5 text-p-gray-dark">
+                      {question.likeCount}
+                    </span>
+                  )}
+                  <FiThumbsUp
+                    size={22}
+                    className={`p-0 ${
+                      !question.likeId
+                        ? "text-p-gray hover:text-p-gray-dark"
+                        : "text-p-purple hover:text-p-purple-dark"
+                    } transition delay-150 duration-300 ease-in-out`}
+                  />
+                </button>
+              )}
             </Question>
           ))}
         </section>

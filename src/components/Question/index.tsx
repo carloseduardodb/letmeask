@@ -8,12 +8,29 @@ type PropsQuestion = {
     avatar: string;
   };
   children?: ReactNode;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
 };
 
-const Question = ({ content, author, children }: PropsQuestion) => {
+const Question = ({
+  content,
+  author,
+  children,
+  isAnswered = false,
+  isHighlighted = false,
+}: PropsQuestion) => {
   return (
-    <div className="p-5 bg-white rounded-sm flex flex-col gap-y-4">
-      <p className="text-sm mb-3 text-black">{content}</p>
+    <div
+      className={`p-5 
+      ${
+        isHighlighted && !isAnswered
+          ? "bg-purple-50 border-2 border-p-purple"
+          : "bg-white"
+      }  
+      ${isAnswered ? "bg-p-gray-extra-light" : "bg-white"}  
+      rounded-lg flex flex-col gap-y-4 shadow-md`}
+    >
+      <p className="text-sm mb-3 text-gray-800">{content}</p>
       <div className="flex flex-row justify-between items-center">
         <IdentifyUser
           author={false}

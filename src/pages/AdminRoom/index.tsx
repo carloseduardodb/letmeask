@@ -2,9 +2,12 @@ import logoImg from "../../assets/images/logo.svg";
 import Button from "./../../components/Button";
 import Question from "../../components/Question";
 import RoomCode from "../../components/RoomCode";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { FiTrash } from "react-icons/fi";
 import useRoom from "../../hooks/useRoom";
+import { database } from "../../services/firebase";
+import { FiThumbsUp, FiCheckCircle, FiMessageSquare } from "react-icons/fi";
 
 type QuestionProps = {
   id: string;
@@ -15,6 +18,8 @@ type QuestionProps = {
   content: string;
   isAnswered: boolean;
   isHighlighted: boolean;
+  likeCount: number;
+  likeId: string | undefined;
 };
 
 type RoomParams = {
@@ -24,8 +29,44 @@ type RoomParams = {
 const AdminRoom = () => {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
+  const history = useHistory();
   const { id } = params;
   const { questions, title } = useRoom(id);
+
+  async function handleEndRoom() {
+    await database.ref(`rooms/${id}`).update({
+      endedAt: new Date(),
+    });
+
+    history.push("/");
+  }
+
+  async function handleDeleteQuestion(questionId: string) {
+    if (window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
+      await database.ref(`rooms/${id}/questions/${questionId}`).remove();
+    }
+  }
+
+  async function handleCheckQuestionAsAnswered(questionId: string) {
+    await database.ref(`rooms/${id}/questions/${questionId}`).update({
+      isAnswered: true,
+    });
+  }
+
+  async function handleHighlightQuestion(
+    questionId: string,
+    isHighLighted: boolean
+  ) {
+    if (!isHighLighted) {
+      await database.ref(`rooms/${id}/questions/${questionId}`).update({
+        isHighlighted: true,
+      });
+    } else {
+      await database.ref(`rooms/${id}/questions/${questionId}`).update({
+        isHighlighted: false,
+      });
+    }
+  }
 
   return (
     <div className="justify-items-center items-center flex flex-col">
@@ -35,7 +76,9 @@ const AdminRoom = () => {
           <div className="flex flex-row gap-x-3 justify-center items-center">
             <RoomCode code={id} />
             <div className="max-h-10">
-              <Button isSecodary>Encerrar Sala</Button>
+              <Button onClick={handleEndRoom} isSecodary>
+                Encerrar Sala
+              </Button>
             </div>
           </div>
         </div>
@@ -61,7 +104,76 @@ const AdminRoom = () => {
               key={question.id}
               content={question.content}
               author={question.author}
-            />
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
+            >
+              <div className="flex flex-row items-center">
+                {question.likeCount > 0 && (
+                  <span
+                    className="flex items-center gap-x-1 justify-center mr-1.5 
+                  text-p-white bg-p-purple w-12 h-8 rounded-full"
+                  >
+                    <FiThumbsUp />
+                    {question.likeCount}
+                  </span>
+                )}
+                {!question.isAnswered && (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleCheckQuestionAsAnswered(question.id);
+                      }}
+                      className="text-green-500 flex items-center justify-center 
+                      hover:text-p-white hover:bg-green-500 w-12 h-8 px-2 py-1 
+                      rounded-full"
+                      aria-label="Apagar pergunta"
+                    >
+                      <FiCheckCircle
+                        size={18}
+                        className={`p-0 
+                          transition delay-50 duration-300 ease-in-out`}
+                      />
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        handleHighlightQuestion(
+                          question.id,
+                          question.isHighlighted
+                        );
+                      }}
+                      className={`text-p-purple flex items-center justify-center 
+                    hover:text-p-white hover:bg-p-purple w-12 h-8 px-2 py-1 
+                    rounded-full ${
+                      question.isHighlighted && "bg-p-purple text-p-white"
+                    }
+                    `}
+                      aria-label="Apagar pergunta"
+                    >
+                      <FiMessageSquare
+                        size={18}
+                        className={`p-0 
+                  transition delay-50 duration-300 ease-in-out`}
+                      />
+                    </button>
+                  </>
+                )}
+
+                <button
+                  onClick={() => {
+                    handleDeleteQuestion(question.id);
+                  }}
+                  className="text-p-danger flex items-center justify-center hover:text-p-white hover:bg-p-danger w-12 h-8 px-2 py-1 rounded-full"
+                  aria-label="Apagar pergunta"
+                >
+                  <FiTrash
+                    size={18}
+                    className={`p-0 
+                  transition delay-50 duration-300 ease-in-out`}
+                  />
+                </button>
+              </div>
+            </Question>
           ))}
         </section>
       </main>
