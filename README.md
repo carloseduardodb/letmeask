@@ -1,5 +1,4 @@
-<div style="text-align: center;
-">
+<div align="center">
 <img src="./project_images/logo.cec26660.svg">
 </div>
 <div align="center">
@@ -16,3 +15,59 @@
   </h1>
   <img style="border-radius: 10px;" src="./project_images/HomePage.png" alt="">
 </main>
+
+<br>
+
+## 🧪 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [React](https://reactjs.org)
+- [Firebase](https://firebase.google.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+
+## 🚀 Como executar
+
+Clone o projeto e acesse a pasta do mesmo.
+
+```bash
+$ git clone https://github.com/rocketseat-education/nlw-06-reactjs
+$ cd nlw-06-reactjs
+```
+
+Para iniciá-lo, siga os passos abaixo:
+
+```bash
+# Instalar as dependências
+$ yarn
+
+# Iniciar o projeto
+$ yarn start
+```
+
+O app estará disponível no seu browser pelo endereço http://localhost:3000.
+
+Lembrando que será necessário criar uma conta no [Firebase](https://firebase.google.com/) e um projeto para disponibilizar um Realtime Database.
+
+## 💻 Projeto
+
+Teasker é perfeito para você utilizar nas suas aulas ao vivo.
+
+Este é um projeto desenvolvido durante a **[Next Level Week Together](https://nextlevelweek.com/)**, apresentada dos dias 20 a 27 de Junho de 2021 juntamente com modificações feitas por mim.
+
+## 🔖 Layout
+
+Você pode visualizar o layout do projeto através do link abaixo: (Obs: Não segui as regras de layout do curso fiz o projeto todo usando Tailwind).
+
+- [Layout Web](https://www.figma.com/file/u0BQK8rCf2KgzcukdRRCWh/Letmeask/duplicate)
+
+Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).
+
+## 📝 License
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+---
+
+Feito com 💜 by Carlos Eduardo Dias Batista
