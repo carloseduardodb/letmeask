@@ -11,7 +11,6 @@ const IdentifyUser: React.FC<IdentifyUserTypes> = ({
   author,
   avatar,
 }) => {
-  console.log(avatar);
   return (
     <div
       className={`flex items-center ${

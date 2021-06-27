@@ -23,6 +23,7 @@ const Room = ({
   const history = useHistory();
   async function handleReopenRoom() {
     await database.ref(`users/${user?.id}/${roomKey}/endedAt`).remove();
+    await database.ref(`rooms/${roomKey}/endedAt`).remove();
     history.push(`/admin/rooms/${roomKey}`);
   }
   return (

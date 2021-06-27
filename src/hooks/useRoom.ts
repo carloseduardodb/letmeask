@@ -73,7 +73,7 @@ export default function useRoom(id: string) {
   useEffect(() => {
     const result = async () => {
       const idUser = await user?.id;
-      if (idUser != undefined) {
+      if (idUser !== undefined) {
         const userRoomRef = database.ref(`users/${user?.id}/${id}`);
         userRoomRef.update({
           countQuestions: questions.length,
@@ -84,7 +84,7 @@ export default function useRoom(id: string) {
       }
     };
     result();
-  }, [questions]);
+  }, [user?.id, id, questions]);
 
   return { questions, title };
 }

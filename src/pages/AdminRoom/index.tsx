@@ -10,6 +10,8 @@ import { database } from "../../services/firebase";
 import { FiThumbsUp, FiCheckCircle, FiMessageSquare } from "react-icons/fi";
 import emptyQuestions from "../../assets/images/empty-questions.svg";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect } from "react";
+import useMyRooms from "../../hooks/useMyRooms";
 
 type QuestionProps = {
   id: string;
@@ -34,6 +36,16 @@ const AdminRoom = () => {
   const history = useHistory();
   const { id } = params;
   const { questions, title } = useRoom(id);
+  const { dataRooms } = useMyRooms();
+
+  useEffect(() => {
+    if (dataRooms !== null) {
+      if (dataRooms[0]) dataRooms[0].authorId !== user?.id && history.push("/");
+    }
+    if (!user) {
+      history.push("/");
+    }
+  }, [user?.id, dataRooms, history]);
 
   async function handleEndRoom() {
     await database.ref(`rooms/${id}`).update({

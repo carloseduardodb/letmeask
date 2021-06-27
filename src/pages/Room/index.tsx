@@ -126,7 +126,10 @@ const Room = () => {
             {!user ? (
               <span>
                 Para enviar uma pergunta,{" "}
-                <button className="text-blue-700">faça seu login</button>.
+                <Link to="/" className="text-blue-700">
+                  faça seu login
+                </Link>
+                .
               </span>
             ) : (
               <IdentifyUser avatar={user.avatar} author name={user.name} />
