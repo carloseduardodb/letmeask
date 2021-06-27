@@ -1,15 +1,64 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import Button from "../../components/Button";
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
+import Room from "../../components/Room";
+
+type DataRooms = {
+  authorId: string;
+  countQuestions: string;
+  countResponses: boolean;
+  endedAt: Date;
+  roomKey: string;
+  title: string;
+};
+
+type FirebaseDataRooms = Record<
+  string,
+  {
+    authorId: string;
+    countQuestions: string;
+    countResponses: boolean;
+    endedAt: Date;
+    roomKey: string;
+    title: string;
+  }
+>;
 
 const NewRoom = () => {
   const { user } = useAuth();
   const [newRoom, setNewRoom] = useState("");
+  const [dataRooms, setDataRooms] = useState<DataRooms[]>([]);
   const history = useHistory();
+
+  useEffect(() => {
+    const roomRef = database.ref(`users/${user?.id}`);
+    roomRef.on("value", (room) => {
+      const databaseRoom = room.val();
+      const firebaseDataRooms: FirebaseDataRooms = databaseRoom ?? {};
+
+      const parsedDataRooms = Object.entries(firebaseDataRooms).map(
+        ([key, value]) => {
+          return {
+            authorId: value.authorId,
+            countQuestions: value.countQuestions,
+            countResponses: value.countResponses,
+            endedAt: value.endedAt,
+            roomKey: value.roomKey,
+            title: value.title,
+          };
+        }
+      );
+      setDataRooms(parsedDataRooms);
+    });
+
+    return () => {
+      roomRef.off("value");
+    };
+  }, [user?.id]);
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
@@ -92,6 +141,19 @@ const NewRoom = () => {
               </Button>
             </form>
           </div>
+        </div>
+        <div className="grid grid-cols-3 gap-3 my-5">
+          {dataRooms.map((dataRoom) => (
+            <Room
+              authorId={dataRoom.authorId}
+              countQuestions={dataRoom.countQuestions}
+              countResponses={dataRoom.countResponses}
+              endedAt={dataRoom.endedAt}
+              key={dataRoom.roomKey}
+              roomKey={dataRoom.roomKey}
+              title={dataRoom.title}
+            />
+          ))}
         </div>
       </main>
     </div>
