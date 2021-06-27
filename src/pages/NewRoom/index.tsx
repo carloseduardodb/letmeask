@@ -3,7 +3,6 @@ import { FiPlus } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import Button from "../../components/Button";
-import Room from "../../components/Room";
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
 
@@ -24,6 +23,12 @@ const NewRoom = () => {
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
+    });
+
+    const userRoomRef = database.ref(`users/${user?.id}/rooms`);
+
+    await userRoomRef.push({
+      idRoom: firebaseRoom.key,
     });
 
     history.push(`/admin/rooms/${firebaseRoom.key}`);
@@ -83,9 +88,6 @@ const NewRoom = () => {
               </Button>
             </form>
           </div>
-        </div>
-        <div className="grid grid-cols-3 mt-8 gap-5">
-          <Room />
         </div>
       </main>
     </div>

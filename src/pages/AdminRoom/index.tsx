@@ -70,24 +70,29 @@ const AdminRoom = () => {
 
   return (
     <div className="justify-items-center items-center flex flex-col min-h-screen">
-      <header className="p-6 border-b border-p-white-dark bg-white w-screen">
-        <div className="max-w-6xl m-auto flex justify-between items-center">
+      <header className="px-5 py-4 border-b border-p-white-dark bg-white w-screen pt-4">
+        <div className="max-w-6xl m-auto flex flex-col md:flex-row justify-between items-center">
           <Link to="/">
-            <img src={logoImg} alt="Letmeask" className="max-h-11" />
+            <img src={logoImg} alt="Letmeask" className="max-h-14" />
           </Link>
-          <div className="flex flex-row gap-x-3 justify-center items-center">
+          <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0">
             <RoomCode code={id} />
-            <div className="max-h-10">
-              <Button onClick={handleEndRoom} isSecodary>
+            <div className="max-h-10 w-full">
+              <Button
+                onClick={handleEndRoom}
+                className="h-10 bg-p-white w-full hover:bg-p-white-dark text-red-700 border border-red-700 rounded-lg font-medium  
+                transition-colors delay-75 flex justify-center items-center 
+                cursor-pointer px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Encerrar Sala
               </Button>
             </div>
           </div>
         </div>
       </header>
-      <main className="max-w-4xl m-0 w-screen mt-8">
+      <main className="max-w-4xl m-0 w-screen mt-0 px-5">
         <div className="mt-8 mx-0 mb-6 flex items-center">
-          <h1 className="font-display text-2xl text-p-black font-semibold">
+          <h1 className="font-display text-md text-p-black font-semibold">
             Sala {title}
           </h1>
           {questions.length > 0 && (
@@ -100,7 +105,7 @@ const AdminRoom = () => {
           )}
         </div>
 
-        <section className="my-8 flex flex-col gap-y-3">
+        <section className="my-4 flex flex-col gap-y-3">
           {questions.map((question: QuestionProps) => (
             <Question
               key={question.id}

@@ -74,18 +74,20 @@ const Room = () => {
   }
 
   return (
-    <div className="justify-items-center items-center flex flex-col">
-      <header className="p-6 border-b border-p-white-dark bg-white w-screen">
-        <div className="max-w-6xl m-auto flex justify-between items-center">
+    <div className="justify-items-center items-center flex flex-col min-h-screen">
+      <header className="px-5 py-4 border-b border-p-white-dark bg-white w-screen pt-4">
+        <div className="max-w-6xl m-auto flex flex-col md:flex-row w-full justify-between items-center">
           <Link to="/">
-            <img src={logoImg} alt="Letmeask" className="max-h-11" />
+            <img src={logoImg} alt="Letmeask" className="max-h-14" />
           </Link>
-          <RoomCode code={id} />
+          <div className="flex justify-center items-center">
+            <RoomCode code={id} />
+          </div>
         </div>
       </header>
-      <main className="max-w-4xl m-0 w-screen mt-8">
+      <main className="max-w-4xl m-0 w-screen mt-0 px-5">
         <div className="mt-8 mx-0 mb-6 flex items-center">
-          <h1 className="font-display text-2xl text-p-black font-semibold">
+          <h1 className="font-display text-md text-p-black font-semibold">
             Sala {title}
           </h1>
           {questions.length > 0 && (
@@ -106,9 +108,18 @@ const Room = () => {
             rows={4}
             placeholder="O que você quer perguntar?"
           />
-          <div className="flex flex-row-reverse items-center justify-between">
-            <div>
-              <Button type="submit" disabled={!user}>
+          <div className="flex flex-col-reverse gap-y-5 items-start justify-between">
+            <div className="w-full">
+              <Button
+                type="submit"
+                disabled={!user}
+                className={`
+                  h-14 bg-blue-700 hover:bg-blue-800 text-white
+                  rounded-lg font-medium  w-full
+                  transition-colors delay-75  flex justify-center items-center 
+                  cursor-pointer border-0 px-8 disabled:opacity-50 disabled:cursor-not-allowed
+              `}
+              >
                 Enviar pergunta
               </Button>
             </div>
