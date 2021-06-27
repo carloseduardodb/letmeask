@@ -93,7 +93,12 @@ const Home = () => {
               value={roomCode}
               placeholder="Digite o código da sala"
             />
-            <Button type="submit">Entrar na sala</Button>
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-md text-white"
+              type="submit"
+            >
+              Entrar na sala
+            </Button>
           </form>
         </div>
       </main>

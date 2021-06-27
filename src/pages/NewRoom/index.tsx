@@ -25,10 +25,14 @@ const NewRoom = () => {
       authorId: user?.id,
     });
 
-    const userRoomRef = database.ref(`users/${user?.id}/rooms`);
+    const userRoomRef = database.ref(`users/${user?.id}/${firebaseRoom.key}`);
 
-    await userRoomRef.push({
-      idRoom: firebaseRoom.key,
+    await userRoomRef.update({
+      title: newRoom,
+      authorId: user?.id,
+      roomKey: firebaseRoom.key,
+      countResponses: 0,
+      countQuestions: 0,
     });
 
     history.push(`/admin/rooms/${firebaseRoom.key}`);

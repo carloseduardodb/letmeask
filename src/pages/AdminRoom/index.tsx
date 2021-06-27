@@ -9,6 +9,7 @@ import useRoom from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 import { FiThumbsUp, FiCheckCircle, FiMessageSquare } from "react-icons/fi";
 import emptyQuestions from "../../assets/images/empty-questions.svg";
+import { useAuth } from "../../hooks/useAuth";
 
 type QuestionProps = {
   id: string;
@@ -29,12 +30,17 @@ type RoomParams = {
 
 const AdminRoom = () => {
   const params = useParams<RoomParams>();
+  const { user } = useAuth();
   const history = useHistory();
   const { id } = params;
   const { questions, title } = useRoom(id);
 
   async function handleEndRoom() {
     await database.ref(`rooms/${id}`).update({
+      endedAt: new Date(),
+    });
+
+    await database.ref(`users/${user?.id}/${id}`).update({
       endedAt: new Date(),
     });
 

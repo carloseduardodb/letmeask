@@ -70,5 +70,21 @@ export default function useRoom(id: string) {
     };
   }, [id, user?.id]);
 
+  useEffect(() => {
+    const result = async () => {
+      const idUser = await user?.id;
+      if (idUser != undefined) {
+        const userRoomRef = database.ref(`users/${user?.id}/${id}`);
+        userRoomRef.update({
+          countQuestions: questions.length,
+          countResponses: questions.filter(
+            (question) => question.isAnswered === true
+          ).length,
+        });
+      }
+    };
+    result();
+  }, [questions]);
+
   return { questions, title };
 }
