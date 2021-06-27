@@ -4,8 +4,12 @@
       ".read": false,
       ".write": "auth != null",
       "$roomId": {
-        ".read": true,
+        ".read": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
         ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+        "authorId": {
+          ".read": false,
+          ".write": "auth != null"
+        },
         "questions": {
           ".read": true,
           ".write": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
@@ -14,6 +18,12 @@
             ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)"
           }
         }
+      }
+    },
+    "users": {
+      "$userId": {
+        ".read": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
+        ".write": true
       }
     }
   }
