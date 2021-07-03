@@ -70,13 +70,15 @@ const NewRoom = () => {
           </Link>
         </p>
       </aside>
-      <main className="flex-8 flex-col p-8 h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-600">
+      <main className="flex-8 flex-col h-screen p-5 dark:bg-gray-900">
         <div
           style={{ height: "max-content" }}
-          className="flex flex-row text-center bg-white px-5 py-8 h-auto w-full rounded"
+          className="flex flex-row text-center bg-white px-5 py-8 h-auto rounded w-7/12"
         >
           <div className="w-full text-left">
-            <h2 className="text-2xl mb-6 font-display">Criar uma nova sala</h2>
+            <h1 className="font-display text-xl my-2 text-p-black font-semibold">
+              Criar uma nova sala
+            </h1>
             <form className="flex flex-row gap-3" onSubmit={handleCreateRoom}>
               <input
                 className="h-12 rounded-lg w-full px-4 bg-white border-2 

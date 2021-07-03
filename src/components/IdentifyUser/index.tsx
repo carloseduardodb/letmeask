@@ -27,7 +27,9 @@ const IdentifyUser: React.FC<IdentifyUserTypes> = ({
       </span>
       <h3
         className={`ml-2 text-sm ${
-          author ? "font-bold text-p-black" : "text-p-gray-dark"
+          author
+            ? "font-bold text-p-black dark:text-p-white"
+            : "text-p-gray-dark"
         }`}
       >
         {name}

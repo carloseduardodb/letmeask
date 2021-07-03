@@ -37,6 +37,12 @@ type Question = {
 export default function useRoom(id: string) {
   const { user } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [questionsAnswered, setQuestionsAnswered] = useState<Question[]>([]);
+  const [newQuestions, setNewQuestions] = useState<Question[]>([]);
+  const [questionsMostVoted, setQuestionsMostVoted] = useState<Question[]>([]);
+  const [questionHighlighted, setQuestionHighlighted] = useState<Question[]>(
+    []
+  );
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -61,7 +67,37 @@ export default function useRoom(id: string) {
         }
       );
 
+      const parsedQuestionsHighlighted = parsedQuestions.filter((question) => {
+        return question.isHighlighted === true;
+      });
+
+      const parsedQuestionsAnswered = parsedQuestions.filter((question) => {
+        return question.isAnswered === true;
+      });
+
+      const parsedNewQuestionsFilter = parsedQuestions.filter(
+        (question) => !question.isAnswered && !question.isHighlighted
+      );
+
+      const parseQuestionsMostVoted = parsedNewQuestionsFilter.sort(function (
+        a,
+        b
+      ) {
+        if (a.likeCount < b.likeCount) {
+          return -1;
+        }
+        if (a.likeCount > b.likeCount) {
+          return 1;
+        }
+        return 0;
+      });
+
+      parsedQuestions.reverse();
       setTitle(databaseRoom.title);
+      setQuestionsAnswered(parsedQuestionsAnswered);
+      setQuestionsMostVoted(parseQuestionsMostVoted.reverse());
+      setNewQuestions(parsedNewQuestionsFilter);
+      setQuestionHighlighted(parsedQuestionsHighlighted);
       setQuestions(parsedQuestions);
     });
 
@@ -86,5 +122,12 @@ export default function useRoom(id: string) {
     result();
   }, [user?.id, id, questions]);
 
-  return { questions, title };
+  return {
+    newQuestions,
+    questionsMostVoted,
+    questionsAnswered,
+    questionHighlighted,
+    questions,
+    title,
+  };
 }

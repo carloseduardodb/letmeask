@@ -17,8 +17,13 @@ const RoomCode: React.FC<RoomCodeType> = ({ code }) => {
       <span className="bg-blue-700 p-2.5 px-3 rounded-l-lg">
         <FiCopy size={18} color="#fff" />
       </span>
-      <span className="px-4 py-1.5 border border-blue-700 rounded-r-lg text-sm truncate">
-        Sala {code}
+      <span
+        className="
+          px-4 py-2 flex items-center border border-blue-700 rounded-r-lg 
+          text-sm truncate dark:text-p-white-light dark:bg-blue-500 dark:hover:bg-blue-600
+          "
+      >
+        <p>{code}</p>
       </span>
     </button>
   );

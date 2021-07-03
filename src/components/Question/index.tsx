@@ -21,6 +21,7 @@ const Question = ({
 }: PropsQuestion) => {
   return (
     <div
+      style={{ height: "max-content" }}
       className={`p-5 
       ${
         isHighlighted && !isAnswered
