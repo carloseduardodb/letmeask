@@ -69,7 +69,16 @@ Este é um projeto desenvolvido durante a **[Next Level Week Together](https://n
 - Organização das perguntas mais curtidas.
 - Telas de erro adicionadas quando o usuário entra em partes não autorizadas.
 
-## 🔖 Layout
+## 🔖 Algumas telas do projeto modificado
+
+<img src="./project_images/Captura de tela de 2021-07-03 19-42-45.png" />
+
+<br/>
+<br/>
+
+<img src="./project_images/Captura de tela de 2021-07-03 19-43-51.png" />
+
+## 🔖 Layout do projeto original
 
 Você pode visualizar o layout do projeto através do link abaixo: (Obs: Não segui as regras de layout do curso fiz o projeto todo usando Tailwind).
 
