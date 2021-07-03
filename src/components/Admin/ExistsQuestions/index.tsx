@@ -1,4 +1,4 @@
-import emptyQuestions from "../../assets/images/empty-questions.svg";
+import emptyQuestions from "../../../assets/images/empty-questions.svg";
 
 type QuestionProps = {
   id: string;
@@ -22,7 +22,7 @@ const ExistsQuestions = ({ questions }: ExistQuestionsProps) => {
     <>
       {questions.length === 0 && (
         <div className="my-12">
-          <h3>
+          <h3 className="dark:text-p-white">
             Sua aula está tão boa que seus alunos estão sem palavras
             <br />
             <span className="text-blue-700 font-bold">OU</span>

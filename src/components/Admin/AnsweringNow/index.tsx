@@ -1,4 +1,4 @@
-import Question from "../../components/Question";
+import Question from "../../../components/All/Question";
 import { FiTrash } from "react-icons/fi";
 import { FiThumbsUp, FiCheckCircle, FiMessageSquare } from "react-icons/fi";
 

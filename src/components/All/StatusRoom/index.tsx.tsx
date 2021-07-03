@@ -1,5 +1,3 @@
-import React from "react";
-
 type QuestionProps = {
   id: string;
   author: {

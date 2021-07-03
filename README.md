@@ -56,6 +56,19 @@ Teasker é perfeito para você utilizar nas suas aulas ao vivo.
 
 Este é um projeto desenvolvido durante a **[Next Level Week Together](https://nextlevelweek.com/)**, apresentada dos dias 20 a 27 de Junho de 2021 juntamente com modificações feitas por mim.
 
+## 🔖 Modificações
+
+- Responsividade
+- Visualização das salas criadas e possibilidade de voltar ou reabrir as mesmas
+- Modificações no layout(cores, organização dos componentes)
+- Modo dark adicionado
+- Todo o layout foi construido com o tailwindCSS
+- Os icones do sistema são de um pacote de icones ao inves de importações de arquivo.
+- Novas regras adicionadas no firebase para a limitação de algumas ações de usuários não autorizados.
+- Novos campos adicionados no firebase.
+- Organização das perguntas mais curtidas.
+- Telas de erro adicionadas quando o usuário entra em partes não autorizadas.
+
 ## 🔖 Layout
 
 Você pode visualizar o layout do projeto através do link abaixo: (Obs: Não segui as regras de layout do curso fiz o projeto todo usando Tailwind).

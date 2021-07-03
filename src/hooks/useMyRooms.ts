@@ -45,7 +45,12 @@ export default function useMyRooms() {
           };
         }
       );
-      setDataRooms(parsedDataRooms);
+
+      const filterParsedDataRooms = parsedDataRooms.filter(
+        (data) => data.authorId != null
+      );
+
+      setDataRooms(filterParsedDataRooms);
     });
 
     return () => {

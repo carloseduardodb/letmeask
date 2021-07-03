@@ -1,19 +1,20 @@
 import logoImg from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import Button from "./../../components/Button";
-import RoomCode from "../../components/RoomCode";
+import Button from "./../../components/All/Button";
+import RoomCode from "../../components/All/RoomCode";
 import { useHistory, useParams } from "react-router-dom";
 import useRoom from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import useMyRooms from "../../hooks/useMyRooms";
 import VoidImage from "./../../assets/images/void-page.svg";
-import AnsweringNow from "../../components/AnsweringNow";
-import MostVoted from "../../components/MostVoted";
-import AllNewQuestions from "../../components/AllNewQuestions";
-import ExistsQuestions from "../../components/ExistsQuestions";
-import Question from "../../components/Question";
-import StatusRoom from "../../components/StatusRoom/index.tsx";
+import AnsweringNow from "../../components/Admin/AnsweringNow";
+import MostVoted from "../../components/Admin/MostVoted";
+import AllNewQuestions from "../../components/Admin/AllNewQuestions";
+import ExistsQuestions from "../../components/Admin/ExistsQuestions";
+import Question from "../../components/All/Question";
+import StatusRoom from "../../components/All/StatusRoom/index.tsx";
+import { FaTimes } from "react-icons/fa";
 
 type RoomParams = {
   id: string;
@@ -55,7 +56,7 @@ const AdminRoom = () => {
       endedAt: new Date(),
     });
 
-    history.push("/");
+    history.push("/rooms/new");
   }
 
   async function handleDeleteQuestion(questionId: string) {
@@ -111,35 +112,43 @@ const AdminRoom = () => {
             </div>
           ) : (
             <>
-              <header className="px-5 py-4 border-b border-p-white-dark bg-white dark:bg-gray-900 dark:border-gray-800 w-screen pt-4">
-                <div className="max-w-6xl m-auto flex flex-col md:flex-row justify-between items-center">
+              <header
+                className="px-5 py-4 border-b border-p-white-dark bg-white 
+              dark:bg-gray-900 dark:border-gray-800 w-screen pt-4
+              "
+              >
+                <div
+                  className="max-w-6xl m-auto lg:flex-row flex flex-row md:flex-row 
+                justify-between items-center"
+                >
                   <Link to="/rooms/new">
                     <img
                       src={logoImg}
-                      alt="Letmeask"
-                      className="max-h-14 dark:bg-p-white rounded-md px-5"
+                      alt="Teasker"
+                      className="lg:max-h-14 max-h-9 dark:bg-p-white rounded-md px-5"
                     />
                   </Link>
-                  <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0">
+                  <div className="flex flex-row md:flex-row gap-x-3 gap-y-3 md:gap-y-0">
                     <RoomCode code={id} />
                     <div className="max-h-10 w-full">
                       <Button
                         onClick={handleEndRoom}
-                        className="h-10 bg-p-white w-full hover:bg-p-white-dark dark:bg-red-500 dark:text-p-white dark:hover:bg-red-600 text-red-700 border border-red-700 rounded-lg font-medium  
-                transition-colors delay-75 flex justify-center items-center 
-                cursor-pointer px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-red-500 p-2 rounded-md text-white h-10 w-10 md:w-full flex justify-center items-center"
                       >
-                        Encerrar Sala
+                        <span className="hidden md:flex">Encerrar Sala</span>
+                        <span className="md:hidden">
+                          <FaTimes />
+                        </span>
                       </Button>
                     </div>
                   </div>
                 </div>
               </header>
-              <main className="max-w-5xl m-0 w-screen mt-0 px-5">
+              <main className="lg:max-w-5xl m-0 w-screen mt-0 px-5">
                 {questions.length > 0 && (
                   <div>
-                    <div className="flex gap-x-16">
-                      <div className="w-7/12 py-5 gap-y-4 flex flex-col h-96">
+                    <div className="flex flex-col-reverse lg:flex-row gap-x-16 w-full">
+                      <div className="lg:w-7/12 w-full py-5 gap-y-4 flex flex-col h-96">
                         <StatusRoom title={title} questions={questions} />
                         <AnsweringNow
                           handleCheckQuestionAsAnswered={
@@ -151,7 +160,7 @@ const AdminRoom = () => {
                         />
                       </div>
 
-                      <div className="w-5/12 py-5 gap-y-4 flex flex-col h-96">
+                      <div className="lg:w-5/12 w-full py-5 gap-y-4 flex flex-col h-96">
                         <h1 className="font-display text-md my-4 text-p-black dark:text-p-white font-semibold">
                           Últimas questões respondidas
                         </h1>

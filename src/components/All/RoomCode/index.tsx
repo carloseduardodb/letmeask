@@ -23,7 +23,7 @@ const RoomCode: React.FC<RoomCodeType> = ({ code }) => {
           text-sm truncate dark:text-p-white-light dark:bg-blue-500 dark:hover:bg-blue-600
           "
       >
-        <p>{code}</p>
+        <p>{code.substr(1, 8) + `...`}</p>
       </span>
     </button>
   );

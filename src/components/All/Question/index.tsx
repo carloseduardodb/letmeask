@@ -1,4 +1,4 @@
-import IdentifyUser from "../IdentifyUser";
+import IdentifyUser from "../../All/IdentifyUser";
 import { ReactNode } from "react";
 
 type PropsQuestion = {

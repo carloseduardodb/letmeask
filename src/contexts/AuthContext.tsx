@@ -22,18 +22,45 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    const unsubsribe = auth.onAuthStateChanged((user) => {
-      findAuthUser(user);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const { displayName, photoURL, uid } = user;
+
+        if (!displayName || !photoURL) {
+          throw new Error("Missing information from Google Account.");
+        }
+
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL,
+        });
+      }
     });
+
     return () => {
-      unsubsribe();
+      unsubscribe();
     };
   }, []);
 
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    const response = await auth.signInWithPopup(provider);
-    findAuthUser(response);
+
+    const result = await auth.signInWithPopup(provider);
+
+    if (result.user) {
+      const { displayName, photoURL, uid } = result.user;
+
+      if (!displayName || !photoURL) {
+        throw new Error("Missing information from Google Account.");
+      }
+
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      });
+    }
   }
 
   function findAuthUser(data: any) {

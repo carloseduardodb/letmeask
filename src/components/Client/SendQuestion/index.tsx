@@ -1,6 +1,6 @@
-import Button from "./../Button";
+import Button from "./../../All/Button";
 import { Link } from "react-router-dom";
-import IdentifyUser from "./../IdentifyUser";
+import IdentifyUser from "./../../All/IdentifyUser";
 
 type User = {
   id: string;

@@ -1,7 +1,7 @@
 import logoImg from "../../assets/images/logo.svg";
-import Question from "../../components/Question";
+import Question from "../../components/All/Question";
 import { Link } from "react-router-dom";
-import RoomCode from "../../components/RoomCode";
+import RoomCode from "../../components/All/RoomCode";
 import { useParams } from "react-router-dom";
 import { FormEvent, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
@@ -9,8 +9,9 @@ import { database } from "../../services/firebase";
 import useRoom from "../../hooks/useRoom";
 import { FiThumbsUp } from "react-icons/fi";
 import { FaArrowCircleLeft, FaQuestion } from "react-icons/fa";
-import SendQuestion from "../../components/SendQuestion";
+import SendQuestion from "../../components/Client/SendQuestion";
 import VoidImage from "./../../assets/images/void-page.svg";
+import StatusRoom from "../../components/All/StatusRoom/index.tsx";
 
 type QuestionProps = {
   id: string;
@@ -92,7 +93,7 @@ const Room = () => {
   return (
     <div className="justify-items-center items-center flex flex-col min-h-screen overflow-x-hidden dark:bg-gray-900">
       <header className="px-5 py-4 border-b border-p-white-dark bg-white dark:bg-gray-900 dark:border-gray-800 w-screen pt-4">
-        <div className="max-w-6xl m-auto flex flex-col md:flex-row w-full justify-between items-center">
+        <div className="max-w-6xl m-auto flex flex-row md:flex-row w-full justify-between items-center">
           <Link to="/">
             <img
               src={logoImg}
@@ -106,8 +107,8 @@ const Room = () => {
         </div>
       </header>
       <main className="max-w-5xl m-0 w-screen mt-0 px-5">
-        <div className="flex gap-x-5 flex-row-reverse">
-          <div className="w-5/12 py-5 gap-y-4 flex flex-col h-96">
+        <div className="flex gap-x-5 flex-col-reverse md:flex-row-reverse">
+          <div className="md:w-5/12 py-5 gap-y-4 flex flex-col h-96">
             <h1 className="font-display text-md my-4 text-p-black font-semibold dark:text-p-white">
               Últimas questões respondidas
             </h1>
@@ -125,20 +126,8 @@ const Room = () => {
               ))}
             </div>
           </div>
-          <div className="w-7/12">
-            <div className="mt-8 mx-0 mb-6 flex items-center">
-              <h1 className="font-display text-md text-p-black font-semibold dark:text-p-white">
-                {title}
-              </h1>
-              {questions.length > 0 && (
-                <span
-                  className="ml-8 bg-yellow-200 rounded-full py-2 px-4 
-                          text-p-dark text-xs"
-                >
-                  {questions.length} perguntas
-                </span>
-              )}
-            </div>
+          <div className="md:w-7/12">
+            <StatusRoom questions={questions} title={title} />
             <div>
               <button
                 onClick={handleViewBoxQuestion}
@@ -182,7 +171,7 @@ const Room = () => {
                       )
                   )}
                   {questionHighlighted.length === 0 && (
-                    <div className="flex flex-col items-center gap-y-5 text-sm font-bold text-purple-900">
+                    <div className="flex flex-col items-center gap-y-5 text-sm font-bold text-purple-900 dark:text-purple-500">
                       Sem perguntas destacadas! <br /> Tente puxar uma folha do
                       caderno...
                       <img
@@ -201,7 +190,7 @@ const Room = () => {
           <h1 className="font-display text-md text-p-black font-semibold dark:text-p-white">
             Mais Votadas
           </h1>
-          <div className="grid grid-cols-2 gap-5 py-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-5">
             {questionsMostVoted.slice(0, 2).map((question: QuestionProps) => (
               <Question
                 key={question.id}
